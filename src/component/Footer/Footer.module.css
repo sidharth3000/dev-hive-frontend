@@ -1,0 +1,26 @@
+.footer_main{
+    display: flex;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    font-size: 1.2em;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF1D6;
+}
+
+.handles{
+    padding: 30px 100px;
+}
+
+.credit{
+    text-align: center;
+    background-color: orange;
+    color: white;
+    padding: 5px;
+}
+
+.footer_main i:hover{
+    color: orange;
+    cursor: pointer;
+}
