@@ -1,16 +1,17 @@
 .footer_main{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
     list-style: none;
     margin: 0;
     font-size: 1.2em;
-    justify-content: center;
-    align-items: center;
     background-color: #FFF1D6;
 }
 
 .handles{
-    padding: 30px 100px;
+    align-self: center;
+    justify-self: center;
+    padding: 50px 0px;
 }
 
 .credit{

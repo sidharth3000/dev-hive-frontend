@@ -16,7 +16,7 @@ class Nav extends Component{
                     <li className={styles.link}><NavLink activeClassName={styles.active} exact to='/'>Feed</NavLink></li>
                     <li className={styles.link}><NavLink activeClassName={styles.active} exact to='/news'>News</NavLink></li>
                     <li className={styles.link}><NavLink activeClassName={styles.active} exact to='/chat'>Chat</NavLink></li>
-                    <li className={`${styles.link} ${styles.push}`}><NavLink activeClassName={styles.active} exact to='/login'>Login</NavLink></li>
+                    <li className={`${styles.link} ${styles.push}`}><NavLink activeClassName={styles.active} exact to='/user'> <i className="fa fa-user-circle handle"></i></NavLink></li>
                 </ul>
             </nav>
             </div>

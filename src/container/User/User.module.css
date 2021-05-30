@@ -1,0 +1,39 @@
+.dp{
+    margin: auto;
+    text-align: center;
+}
+
+.img{
+    height: 120px;
+    border-radius: 100px;
+    border: 3px solid orange;
+}
+
+.change{
+    background-color: #FFF1D6;
+    color: orange;
+    display: inline-block;
+    padding: 10px 13px;
+    border-radius: 100px;
+    transition: all 0.3s;
+    position:relative;
+    cursor: pointer;
+}
+
+.change:hover{
+    background-color: orange;
+    color: white;
+}
+
+.upload{
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+    width: 100%;
+}
+

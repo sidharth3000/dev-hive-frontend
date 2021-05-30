@@ -25,6 +25,7 @@ ul{
 
 .push{
     margin-left: auto;
+    font-size: 2em;
 }
 
 .main_nav{
@@ -40,7 +41,6 @@ ul{
 
 .logo{
     height: 60px;
-    color: red;
     padding-right: 0px;
 }
 
