@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-import Navbar from '../../component/Navbar/Navbar';
-import Head from '../../component/Header/Header';
-import Footer from '../../component/Footer/Footer';
+import Navbar from '../../components/Navbar/Navbar';
+import Head from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 class Feed extends Component {
 
