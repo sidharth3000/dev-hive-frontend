@@ -3,6 +3,7 @@ import {Route,Switch} from 'react-router-dom';
 
 import Feed from './container/Feed/Feed';
 import User from './container/User/User';
+import Auth from './container/Auth/Signup/Signup'
 
 class App extends Component{
   render(){
@@ -12,6 +13,7 @@ class App extends Component{
           <Switch>
             <Route path='/' exact component={Feed}/>
             <Route path='/' exact component={Feed}/>
+            <Route path='/auth' exact component={Auth}/>
             <Route path='/user' exact component={User}/>
             <Route path='/news' exact component={Feed}/>
             <Route path='/chat' exact component={Feed}/>
