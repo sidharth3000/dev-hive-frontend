@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import styles from './Signup.module.css'
+import * as actions from '../../../store/actions/auth'
 import Login from "../Signin/Singnin"
 
 class Signup extends Component {
@@ -27,7 +29,7 @@ class Signup extends Component {
                         <input type="text" className={`${styles.input} ${styles.pass}`} placeholder="Password"></input><br/>
                     </form>
 
-                    <button className={styles.button}>Singn up</button>
+                    <button className={styles.button} onClick={this.props.onAuth}>Singn up</button>
                     
                 </div >
 
@@ -61,4 +63,17 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+// const mapStateToProps = state => {
+//     return{
+        
+//     }
+// }
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: () => dispatch(actions.auth("sidharth", "12345678912"))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Signup);

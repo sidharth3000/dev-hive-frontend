@@ -1,10 +1,13 @@
 import React from 'react';
 
+import Backdrop from '../Backdrop/Backdrop'
 import styles from './Modal.module.css';
 
 const modal = (props) => (
 
     <div>
+
+        <Backdrop show={true}/>
 
         <div className={styles.modal} 
             style={{

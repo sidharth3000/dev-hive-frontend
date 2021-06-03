@@ -21,7 +21,7 @@ class User extends Component {
             }
         }
 
-        axios.get('http://localhost:9000/avatar', config )
+        axios.post('http://localhost:9000/register', config )
         .then( response =>{
 
             if(response.status == 200){
