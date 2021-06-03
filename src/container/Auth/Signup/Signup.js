@@ -7,29 +7,52 @@ import Login from "../Signin/Singnin"
 
 class Signup extends Component {
 
+    state = {
+        name: null,
+        email: null,
+        password: null
+    }
+
+    onNameChange = (event) => {
+        this.setState({name: event.target.value})
+    }
+
+    onEmailChange = (event) => {
+        this.setState({email: event.target.value})
+    }
+
+    onPassChange = (event) => {
+        this.setState({password: event.target.value})
+    }
+
+    onSubmitHandler = () => {
+        this.props.onAuth(this.state.name, this.state.email, this.state.password)
+    }
+    
     render () {
 
         return(
 
             <div className={styles.back}>
 
-                <Login/>
+              <Login switch={this.props.switch} show={this.props.modal_show}/> 
 
                 <div className={styles.nav}>
                     <img className={styles.logo} src={"Assets/logo.png"} />
                     <div className={styles.name}>DEV-hive</div>
-                    <div className={styles.login}>Login</div>
+                    <div className={styles.login} onClick={this.props.switch}>Login</div>
                 </div>
 
                 <div className={styles.signup}>
                     <div className={styles.welcome}>WELCOME</div>
                     <div className={styles.text}>Consectetur exercitation duis consequat commodo excepteur ex adipisicing commodo non.</div>
                     <form>
-                        <input type="text" className={`${styles.input} ${styles.email}`} placeholder="Email"></input><br/>
-                        <input type="text" className={`${styles.input} ${styles.pass}`} placeholder="Password"></input><br/>
+                    <input type="text" className={`${styles.input} ${styles.namee}`} placeholder="name" onChange={this.onNameChange}></input><br/>
+                        <input type="email" className={`${styles.input} ${styles.email}`} placeholder="Email" onChange={this.onEmailChange}></input><br/>
+                        <input type="password" className={`${styles.input} ${styles.pass}`} placeholder="Password" onChange={this.onPassChange}></input><br/>
                     </form>
 
-                    <button className={styles.button} onClick={this.props.onAuth}>Singn up</button>
+                    <button className={styles.button} onClick={this.onSubmitHandler}>Singn up</button>
                     
                 </div >
 
@@ -63,17 +86,17 @@ class Signup extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     return{
-        
-//     }
-// }
-
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onAuth: () => dispatch(actions.auth("sidharth", "12345678912"))
+const mapStateToProps = state => {
+    return{
+        modal_show: state.modal_show
     }
 }
 
-export default connect(null, mapDispatchToProps)(Signup);
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (name, email, pass) => dispatch(actions.auth(name, email, pass)),
+        switch: () => dispatch(actions.switchSign())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

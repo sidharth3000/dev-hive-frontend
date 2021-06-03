@@ -9,15 +9,20 @@ export const authStart = () => {
     };
 };
 
-export const auth = (email, password, signup) => {
-    console.log("...")
+export const switchSign = () => {
+    return{
+        type: actionTypes.SWITCH_SIGN
+    }
+}
+
+export const auth = (name, email, pass) => {
+    console.log(name,email,pass)
     return dispatch => {
         dispatch(authStart());
         const authData = {
-            name: "tarun",
-            email: "asdashdgasjdaaun@gmail.com",
-            age: "10",
-            password: "1234567890"
+            name: name,
+            email: email,
+            password: pass
         };
 
         let url = 'http://localhost:9000/register';

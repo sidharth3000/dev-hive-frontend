@@ -6,11 +6,28 @@ import Usser from '../../../'
 
 class Signin extends Component {
 
+    state = {
+        email: null,
+        password: null
+    }
+
+    onEmailChange = (event) => {
+        this.setState({email: event.target.value})
+    }
+
+    onPassChange = (event) => {
+        this.setState({password: event.target.value})
+    }
+
+    onSubmitHandler = () => {
+        this.props.onAuth(this.state.name, this.state.email, this.state.password)
+    }
+
     render() {
          return(
              <div>
 
-                 <Modal show={true}>
+                 <Modal show={this.props.show} switch={this.props.switch}>
                      <div className={styles.cont}>
                         <div className={styles.header}>
                             <img src={'Assets/dp.jpg'} className={styles.image}></img>

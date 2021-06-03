@@ -7,9 +7,9 @@ const modal = (props) => (
 
     <div>
 
-        <Backdrop show={true}/>
+        <Backdrop show={props.show}  switch={props.switch}/>
 
-        <div className={styles.modal} 
+        <div className={styles.modal}
             style={{
                 transform: props.show? 'translateY(0)' : 'translateY(-100vh)',
                 opacity: props.show ? '1' : '0'
@@ -20,7 +20,7 @@ const modal = (props) => (
         </div>
     </div>
 
-   
 )
+
 
 export default modal;

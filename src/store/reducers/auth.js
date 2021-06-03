@@ -3,20 +3,27 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
     token: null,
     userId: null,
-    loading: false
-}
+    loading: false,
+    modal_show: false
+};
 
-const reducer = (state=initialState, action) => {
+const reducer = (state = initialState, action) => {
 
     switch(action.type){
 
         case actionTypes.AUTH_START:
-
-        console.log("login start");
-
             return{
                 state
             }
+
+        case actionTypes.SWITCH_SIGN:
+            return{
+                ...state,
+                modal_show: !state.modal_show
+            }
+
+        default:
+            return state;
     }
 }
 
