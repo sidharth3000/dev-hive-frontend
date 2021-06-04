@@ -56,6 +56,13 @@ txt:focus, input:focus{
     outline: none;
 }
 
+.eye{
+    width: max-content;
+    margin: auto;
+    cursor: pointer;
+    color: rgb(119, 119, 119);
+}
+
 .button{
     
     background-color: #FF9931;

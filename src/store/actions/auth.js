@@ -3,9 +3,20 @@ import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
 export const authStart = () => {
-    console.log("auth_start")
     return{
         type: actionTypes.AUTH_START
+    };
+};
+
+export const authSuccess = () => {
+    return{
+        type: actionTypes.AUTH_SUCCESS
+    };
+};
+
+export const authFail = () => {
+    return{
+        type: actionTypes.AUTH_FAIL
     };
 };
 
@@ -15,8 +26,32 @@ export const switchSign = () => {
     }
 }
 
-export const auth = (name, email, pass) => {
-    console.log(name,email,pass)
+export const logout = () => {
+    localStorage.clear();
+    return{
+        type: actionTypes.LOGOUT
+    }
+}
+
+export const deleteAcc = () => {
+    return dispatch => {
+
+        let config = {
+            headers: {
+                token: localStorage.getItem("token")
+            }
+        }
+
+        axios.delete('http://localhost:9000/user/me', config)
+        .then (response =>{
+            dispatch(logout())
+        }).catch(e => {
+            console.log(e)
+        })  
+    }
+}
+
+export const auth = (name, email, pass, signup) => {
     return dispatch => {
         dispatch(authStart());
         const authData = {
@@ -24,12 +59,20 @@ export const auth = (name, email, pass) => {
             email: email,
             password: pass
         };
+        
+        let url ="http://localhost:9000/login";
 
-        let url = 'http://localhost:9000/register';
+        if(signup){
+            url = 'http://localhost:9000/register';
+        }
 
         axios.post(url, authData)
         .then( response => {
-            console.log(response.data);
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('name', response.data.user.name);
+            dispatch(authSuccess());
+        }).catch(e => {
+            dispatch(authFail())
         })
     }
 }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import styles from './Signup.module.css'
@@ -10,7 +11,8 @@ class Signup extends Component {
     state = {
         name: null,
         email: null,
-        password: null
+        password: null,
+        showpass: false
     }
 
     onNameChange = (event) => {
@@ -26,7 +28,11 @@ class Signup extends Component {
     }
 
     onSubmitHandler = () => {
-        this.props.onAuth(this.state.name, this.state.email, this.state.password)
+        this.props.onAuth(this.state.name, this.state.email, this.state.password, true)
+    }
+
+    onSwitchEyeHandler = () => {
+        this.setState({showpass: !this.state.showpass})
     }
     
     render () {
@@ -34,6 +40,8 @@ class Signup extends Component {
         return(
 
             <div className={styles.back}>
+
+            {this.props.isAuth ?  <Redirect to="/user" /> : null}
 
               <Login switch={this.props.switch} show={this.props.modal_show}/> 
 
@@ -47,13 +55,19 @@ class Signup extends Component {
                     <div className={styles.welcome}>WELCOME</div>
                     <div className={styles.text}>Consectetur exercitation duis consequat commodo excepteur ex adipisicing commodo non.</div>
                     <form>
-                    <input type="text" className={`${styles.input} ${styles.namee}`} placeholder="name" onChange={this.onNameChange}></input><br/>
+                        <input type="text" className={`${styles.input} ${styles.namee}`} placeholder="name" onChange={this.onNameChange}></input><br/>
                         <input type="email" className={`${styles.input} ${styles.email}`} placeholder="Email" onChange={this.onEmailChange}></input><br/>
-                        <input type="password" className={`${styles.input} ${styles.pass}`} placeholder="Password" onChange={this.onPassChange}></input><br/>
+                        <input type={this.state.showpass ? "text" : "password"} className={`${styles.input} ${styles.pass}`} placeholder="Password" onChange={this.onPassChange}></input>
+                        <br/>
                     </form>
 
+                    {!this.state.showpass 
+                    ?  <div className={styles.eye} onClick={this.onSwitchEyeHandler} ><i className="fa fa-eye"></i></div>
+                    : <div className={styles.eye} onClick={this.onSwitchEyeHandler}><i className="fa fa-eye-slash"></i></div>}
+                   
+                   
                     <button className={styles.button} onClick={this.onSubmitHandler}>Singn up</button>
-                    
+                   
                 </div >
 
                 <div className={styles.feat_cont}>
@@ -88,13 +102,14 @@ class Signup extends Component {
 
 const mapStateToProps = state => {
     return{
-        modal_show: state.modal_show
+        modal_show: state.auth.modal_show,
+        isAuth: state.auth.auth
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (name, email, pass) => dispatch(actions.auth(name, email, pass)),
+        onAuth: (name, email, pass, signup) => dispatch(actions.auth(name, email, pass, signup)),
         switch: () => dispatch(actions.switchSign())
     }
 }

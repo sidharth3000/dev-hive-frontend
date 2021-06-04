@@ -4,7 +4,8 @@ const initialState = {
     token: null,
     userId: null,
     loading: false,
-    modal_show: false
+    modal_show: false,
+    auth: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,10 +17,30 @@ const reducer = (state = initialState, action) => {
                 state
             }
 
+        case actionTypes.AUTH_SUCCESS:
+            return{
+                ...state,
+                auth: true,
+                modal_show: false
+
+            }
+
+        case actionTypes.AUTH_FAIL:
+            return{
+                ...state
+            }
+
+
         case actionTypes.SWITCH_SIGN:
             return{
                 ...state,
                 modal_show: !state.modal_show
+            }
+
+        case actionTypes.LOGOUT:
+            return{
+                ...state,
+                auth: false
             }
 
         default:

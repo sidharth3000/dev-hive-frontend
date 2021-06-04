@@ -12,12 +12,14 @@ import { BrowserRouter} from 'react-router-dom'
 import thunk from 'redux-thunk'
 
 import authReducer from './store/reducers/auth';
+import userReducer from './store/reducers/user'
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    user: userReducer
 })
 
-const store = createStore(authReducer, compose(
+const store = createStore(rootReducer, compose(
     applyMiddleware(thunk)
 ));
 

@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import axios from 'axios'; 
+import { connect } from 'react-redux';
 
 import Navbar from '../../components/Navbar/Navbar';
-import Head from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import Edit from '../Edit/Edit'
 import styles from './User.module.css';
+import * as actions from '../../store/actions/user'
 
 class User extends Component {
 
@@ -17,11 +19,11 @@ class User extends Component {
 
         let config = {
             headers: {
-              token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI1MTMyNjU5YzMxMTYyZTQzNzBkZDgiLCJpYXQiOjE2MjI0Nzk2NTR9.p1JAQ0ZZwo4VXxKwS11U33HaPyuvePdYzw5EESALtN0",
+              token: localStorage.getItem("token")
             }
         }
 
-        axios.post('http://localhost:9000/register', config )
+        axios.get('http://localhost:9000/avatar', config )
         .then( response =>{
 
             if(response.status == 200){
@@ -30,57 +32,33 @@ class User extends Component {
                 this.setState({avatar: this.state.default})
             }
             
-
-        }).catch( e => {
-        })
-
-    }
-
-    onUploadHandler = (event) => {
-
-        const formData = new FormData();
-
-        formData.append(
-          "avatar",
-          event.target.files[0],
-          event.target.files[0].name
-        );
-
-        let config = {
-            headers: {
-              token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI1MTMyNjU5YzMxMTYyZTQzNzBkZDgiLCJpYXQiOjE2MjI0Nzk2NTR9.p1JAQ0ZZwo4VXxKwS11U33HaPyuvePdYzw5EESALtN0",
-            }
-          }
-        
-        axios.post('http://localhost:9000/upload', formData, config)
-        .then( response =>{
-            console.log(response)
         }).catch( e => {
             console.log(e)
         })
 
-        setTimeout(() =>{
-            window.location.reload(false);
-           },1000)
+    }
+
+    switchModalHandler = () =>{
+        this.setState({show_modal: !this.state.show_modal})
     }
 
     render(){
 
         return(
             <React.Fragment>
+
+                <Edit switch={this.props.switch} show={this.props.edit_modal}/> 
+
                 <Navbar/>
 
-                <Head>Your Profile</Head>
                 <div className={styles.dp}>
                     <img className={styles.img} src={`data:image/jpg;base64,${this.state.avatar}`} />
-                        <div className={styles.change}>
-                            <i className="fa fa-camera edit">
-                               
-                                <input type="file" className={styles.upload} onChange={this.onUploadHandler}></input>
-                               
-                            </i>
+                        <div className={styles.change} onClick={this.props.switch}>
+                            <i className="fa fa-edit edit"></i>
                         </div>
                 </div>
+
+                <div className={styles.user}>&#x3c;{localStorage.getItem("name")}/&#x3e;</div>
 
                 <Footer/>
             </React.Fragment>
@@ -88,4 +66,16 @@ class User extends Component {
     }
 }
 
-export default User;
+const mapStateToProps = state => {
+    return{
+        edit_modal: state.user.edit_modal
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        switch: () => dispatch(actions.switchEdit())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);

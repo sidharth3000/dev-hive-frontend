@@ -1,14 +1,16 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux';
 
 import styles from './Signin.module.css'
 import Modal from '../../../UI/Modal/Modal'
-import Usser from '../../../'
+import * as actions from '../../../store/actions/auth'
 
 class Signin extends Component {
 
     state = {
         email: null,
-        password: null
+        password: null,
+        showpass: false
     }
 
     onEmailChange = (event) => {
@@ -20,7 +22,11 @@ class Signin extends Component {
     }
 
     onSubmitHandler = () => {
-        this.props.onAuth(this.state.name, this.state.email, this.state.password)
+        this.props.onAuth(this.state.name, this.state.email, this.state.password, false)
+    }
+
+    onSwitchEyeHandler = () => {
+        this.setState({showpass: !this.state.showpass})
     }
 
     render() {
@@ -37,15 +43,19 @@ class Signin extends Component {
 
                         <div className={styles.input}>
                             <div className={styles.icon}><i className="fa fa-user-circle"></i></div>
-                            <input type="text" className={styles.txt} placeholder="username"></input>
+                            <input type="text" className={styles.txt} placeholder="username" onChange={this.onEmailChange}></input>
                         </div>
 <br></br>
                         <div className={styles.input}>
                             <div className={styles.icon}><i className="fa fa-key"></i></div>
-                            <input type="text" className={styles.txt} placeholder="password"></input>
+                            <input type={this.state.showpass ? "text" : "password"} className={styles.txt} placeholder="password" onChange={this.onPassChange}></input>
                         </div>
+
+                        {!this.state.showpass 
+                        ?  <div className={styles.eye} onClick={this.onSwitchEyeHandler} ><i className="fa fa-eye"></i></div>
+                        : <div className={styles.eye} onClick={this.onSwitchEyeHandler}><i className="fa fa-eye-slash"></i></div>}
 <br></br>
-                        <button className={styles.button}>Singn up</button>
+                        <button className={styles.button} onClick={this.onSubmitHandler}>Singn in</button>
                      </div>
                      
                  </Modal>
@@ -55,4 +65,10 @@ class Signin extends Component {
     }
 }
 
-export default Signin
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email, pass, signup) => dispatch(actions.auth( email, pass, signup)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Signin);

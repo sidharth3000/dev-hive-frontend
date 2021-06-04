@@ -1,4 +1,4 @@
-body{
+.back{
     background-image: url('../../../images/auth.jpg');
     /* position: absolute; */
     top: 0px;
@@ -37,6 +37,7 @@ body{
     margin-right: 30px;
     color: white;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .login:hover{
@@ -78,8 +79,16 @@ form {
     border-radius: 10px;
 }
 
-.button{
+.eye{
+   width: max-content;
+   margin: auto;
+    color: rgb(206, 206, 206);
+    font-size: 20px;
+    cursor: pointer;
     
+}
+
+.button{
     background-color: #FF9931;
     padding: 15px;
     border: none;
@@ -90,7 +99,6 @@ form {
     color: white;
     font-size: 20px;
     margin-top: 30px;
-    color: rgba(255, 255, 255, 0.719);
 }
 
 .button:hover{
@@ -99,7 +107,7 @@ form {
 }
 
 .welcome{
-    margin-top: 100px;
+    margin-top: 70px;
     font-size: 30px;
     color: white;
     font-weight: bold;
@@ -115,7 +123,7 @@ form {
 .feat_cont{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    margin: 100px 0px;
+    margin: 100px 0px 0px 0px;
     /* grid-gap: 100px; */
 }
 

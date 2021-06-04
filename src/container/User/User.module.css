@@ -16,7 +16,7 @@
 .change{
     background-color: #FFF1D6;
     color: orange;
-    display: inline-block;
+    display: inline;
     padding: 10px 13px;
     border-radius: 100px;
     transition: all 0.3s;
@@ -39,5 +39,17 @@
     height: 100%;
     font-size: 24px;
     width: 100%;
+}
+
+.user{
+    padding: 0px;
+    background-color: orange;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    width: max-content;
+    margin: auto;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
