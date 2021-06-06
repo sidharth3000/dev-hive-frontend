@@ -14,20 +14,23 @@ const reducer = (state = initialState, action) => {
 
         case actionTypes.AUTH_START:
             return{
-                state
+                ...state,
+                loading: true
             }
 
         case actionTypes.AUTH_SUCCESS:
             return{
                 ...state,
                 auth: true,
-                modal_show: false
+                modal_show: false,
+                loading: false
 
             }
 
         case actionTypes.AUTH_FAIL:
             return{
-                ...state
+                ...state,
+                loading: false
             }
 
 

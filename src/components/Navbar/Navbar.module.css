@@ -17,6 +17,7 @@ ul{
 .link{
     font-size: 1.3em;
     padding: 20px;
+    display: inline;
 }
 
 .logoo{
@@ -48,3 +49,41 @@ ul{
     margin-right: 2em;
     font-size: 2em;
 }
+
+.img{
+    width: 30px; /* width of container */
+    height: 30px; /* height of container */
+    object-fit: cover;
+    background-color:#FFF1D6 ;
+    border-radius: 100px;
+    border: 1px solid orange;
+}
+
+.dropdown {
+    position: relative;
+    display: flex;
+    cursor: pointer;
+  }
+ 
+  .drop{
+      font-size: 15px;
+      background-color: #FFF1D6;
+      padding: 5px;
+      margin: 10px;
+      opacity: 0;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 2px;
+      padding: 10px;
+      color: orange; 
+  }
+
+  /* .drop:hover{
+    background-color: orange;
+    color: red;
+  } */
+
+  .dropdown:hover .drop {
+    opacity: 100;
+    
+  }

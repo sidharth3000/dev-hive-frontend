@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import styles from './Signup.module.css'
 import * as actions from '../../../store/actions/auth'
 import Login from "../Signin/Singnin"
+import Spinner from "../../../UI/Spinner/Spinner"
 
 class Signup extends Component {
 
@@ -37,16 +38,20 @@ class Signup extends Component {
     
     render () {
 
+        const spinner = this.props.loading ? <Spinner/> : null
+
         return(
 
             <div className={styles.back}>
+
+                {spinner}
 
             {this.props.isAuth ?  <Redirect to="/user" /> : null}
 
               <Login switch={this.props.switch} show={this.props.modal_show}/> 
 
                 <div className={styles.nav}>
-                    <img className={styles.logo} src={"Assets/logo.png"} />
+                    <img alt="img" className={styles.logo} src={"Assets/logo.png"} />
                     <div className={styles.name}>DEV-hive</div>
                     <div className={styles.login} onClick={this.props.switch}>Login</div>
                 </div>
@@ -103,7 +108,8 @@ class Signup extends Component {
 const mapStateToProps = state => {
     return{
         modal_show: state.auth.modal_show,
-        isAuth: state.auth.auth
+        isAuth: state.auth.auth,
+        loading: state.auth.loading
     }
 }
 

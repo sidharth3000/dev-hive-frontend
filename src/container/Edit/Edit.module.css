@@ -34,15 +34,16 @@
 }
 
 .delete{
-    background-color: #e74c3c;
+    background-color: #a7281a;
     border-radius: 5px;
     padding: 10px;
-    color: white;
+    color: #fa2710;
     cursor: pointer;
 }
 
 .delete:hover{
     background-color: #f02f19;
+    color: white;
 }
 
 .dp{

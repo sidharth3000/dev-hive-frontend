@@ -68,6 +68,7 @@ export const auth = (name, email, pass, signup) => {
 
         axios.post(url, authData)
         .then( response => {
+            localStorage.setItem('id', response.data.user._id);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('name', response.data.user.name);
             dispatch(authSuccess());
@@ -76,3 +77,34 @@ export const auth = (name, email, pass, signup) => {
         })
     }
 }
+
+export const checkAuthTimeout = (expirationTime) => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(logout());
+        }, expirationTime * 1000);
+    };
+};
+
+
+export const authCheckState = () => {
+    
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+
+            dispatch(logout());
+        } 
+        // else {
+            // const exp = new Date(localStorage.getItem('exp'));
+            // console.log("loging out")
+            // if (exp <= new Date()) {
+            //     dispatch(logout());
+            // } 
+            else {
+                dispatch(authSuccess());
+                // dispatch(checkAuthTimeout((exp.getTime() - new Date().getTime()) / 1000 ));
+            }   
+        // }
+    };
+};

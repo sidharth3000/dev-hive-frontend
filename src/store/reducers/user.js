@@ -1,7 +1,8 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-    edit_modal: false
+    edit_modal: false,
+    create_modal: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +14,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 edit_modal: !state.edit_modal
             }
+
+        case actionTypes.SWITCH_CREATE:
+            console.log("switch")
+            return{
+                ...state,
+                create_modal: !state.create_modal
+            }
+        
 
         default:
             return state;

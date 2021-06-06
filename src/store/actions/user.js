@@ -5,3 +5,10 @@ export const switchEdit = () => {
         type: actionTypes.SWITCH_EDIT
     };
 };
+
+export const switchCreate = () => {
+    console.log("Create")
+    return{
+        type: actionTypes.SWITCH_CREATE
+    };
+};

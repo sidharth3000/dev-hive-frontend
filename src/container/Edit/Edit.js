@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios'; 
 
@@ -53,6 +53,9 @@ class Edit extends Component {
           event.target.files[0].name
         );
 
+        console.log(event.target.files[0],
+            event.target.files[0].name)
+        
         let config = {
             headers: {
                 token: localStorage.getItem("token")
@@ -69,44 +72,44 @@ class Edit extends Component {
         this.props.switch();
 
         setTimeout(() =>{
-            window.location.reload(false);
-           },500)
+            // window.location.reload(false);
+           },1000)
     }
 
-    onDeleteHandler = () => {
+    onDeleteAcc = () => {
         this.props.switch();
         this.props.deleteAcc();
-       
     }
 
     render(){
 
+        const redirect = !this.props.isAuth ? <Redirect to="/auth" />  : null
+
         return(
 
             <div className={styles.cont}>
-                {this.props.isAuth ? null  : <Redirect to="/auth" />}
+                
                 <Modal show={this.props.show} switch={this.props.switch} >
-
+                    {redirect}
                     <div className={styles.dp}>
                         <div className={styles.change}>
-                            <i className="fa fa-camera edit"> Edit DP
-                                <input type="file" className={styles.upload} onChange={this.onUploadHandler}></input>
-                               
+                            <i className="fa fa-camera edit"> Upload DP
+                                <input type="file" className={styles.upload} onChange={this.onUploadHandler}></input>  
                             </i>
                         </div>
                             
-                        <div className={`${styles.change} ${styles.delete}`} onClick={this.onDeleteHandler}>
+                        <div className={`${styles.change} ${styles.delete}`} onClick={this.props.deleteDP}>
                             <i className="fa fa-trash edit"> Delete DP
                             </i>
                         </div>
                     </div>
 
                     <div className={styles.txt}>
-                        <input type="text" placeholder="type new name here" className={styles.input} onChange={this.onNameChangeHandler}></input>
+                        <input type="text" placeholder={localStorage.getItem("name")} className={styles.input} onChange={this.onNameChangeHandler}></input>
                         <button className={styles.bttn} onClick={this.onNameSubmit}>change name</button>
                     </div>
 
-                    <div className={styles.delete}  onClick={this.onDeleteHandler}>Delete Account !</div>
+                    <div className={styles.delete}  onClick={this.onDeleteAcc}>Delete Account !</div>
 
                 </Modal>
             </div>

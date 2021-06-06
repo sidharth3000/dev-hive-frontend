@@ -1,0 +1,83 @@
+.txt{
+    /* height: 300px; */
+    width: 95%;
+    border: 1px solid orange;
+    background-color: #FFF1D6;
+    padding: 10px;
+    /* color: orange; */
+}
+
+.title{
+    width: 95%;
+    font-size: 1.5em;
+    display: inline;
+    padding: 10px;
+}
+
+.insert{
+    display: inline;
+}
+
+.change{
+    margin: 10px ;
+    background-color: #FFF1D6;
+    color: orange;
+    padding: 10px 13px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    position:relative;
+    cursor: pointer;
+    text-align: center;
+    margin: 5px;
+    width: max-content;
+}
+
+.change:hover{
+    background-color: orange;
+    color: white;
+}
+
+.upload{
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+    width: 100%;
+    margin: 10px;
+}
+
+.publish{
+    text-align: right;
+    border: none;
+    background-color: #FFF1D6;
+    color: orange;
+    padding: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 5px;
+}
+
+.publish:hover{
+    background-color: orange;
+    color: white;
+}
+
+.cancel{
+    background-color: #a7281a;
+    color: #f73a25;
+}
+
+.cancel:hover{
+    background-color: #f02f19;
+    color: white
+}
+
+.photo{
+    margin: 20px;
+}
+

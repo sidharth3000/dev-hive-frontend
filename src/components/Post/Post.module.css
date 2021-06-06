@@ -1,0 +1,93 @@
+.post{
+    border-left: 2px solid orange;
+    padding: 15px;
+    margin: 15px;
+    padding: 20px;
+}
+
+.user{
+    width: 40px; /* width of container */
+    height: 40px; /* height of container */
+    object-fit: cover;
+    display: inline;
+    border-radius: 1000px;
+    border: 2px solid orange;
+}
+
+.up_cont{
+    display: flex;
+}
+
+.info{
+    display: inline;
+    margin: 5px;
+}
+
+.name{
+    color: black;
+    margin: 5px;
+}
+
+.time{
+    color: rgb(104, 104, 104);
+    margin: 5px;
+    font-size: 10px;
+}
+
+.post_img{
+    height: 250px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.title{
+    font-size: 1.2em;
+    padding: 10px 0px 0px 0px;
+}
+
+.body{
+    padding: 0px 0px;
+    color: rgb(95, 95, 95);
+}
+
+.number{
+    display: inline;
+    color: orange;
+    margin: 5px;
+}
+
+.like{
+    border: none;
+    background-color: #FFF1D6;
+    color: orange;
+    margin: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.like:hover{
+    background-color: orange;
+    color: white;
+}
+
+.full{
+    border: none;
+    margin: 5px 10px;
+    background-color: #FFF1D6;
+    color: orange;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.full:hover{
+    background-color: orange;
+    color: white;
+    
+}
+
+.delete{
+    color: red;
+    cursor: pointer;
+}

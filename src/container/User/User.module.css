@@ -53,3 +53,38 @@
     margin-top: 20px;
 }
 
+.create{
+    margin: 20px;
+    background-color: #FFF1D6;
+    width: 20%;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px;
+    cursor: pointer; 
+    transition: all 0.3s;
+}
+
+.create:hover{
+    background-color: orange;
+    color: white;
+}
+
+.posts{
+    width: 75%;
+    margin: 20px auto;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    /* background-color: #f8f4ed; */
+}
+
+.my_posts{
+    margin: 20px;
+    background-color: orange;
+    width: max-content;
+    padding: 5px;
+    border-radius: 0px 10px 10px 0px;
+    font-size: 20px;
+    color: white;
+    
+}
+

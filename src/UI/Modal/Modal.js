@@ -6,10 +6,9 @@ import styles from './Modal.module.css';
 const modal = (props) => (
 
     <div>
+        <Backdrop show={props.show} switch={props.switch} />
 
-        <Backdrop show={props.show}  switch={props.switch}/>
-
-        <div className={styles.modal}
+        <div className={styles.modal} 
             style={{
                 transform: props.show? 'translateY(0)' : 'translateY(-100vh)',
                 opacity: props.show ? '1' : '0'
