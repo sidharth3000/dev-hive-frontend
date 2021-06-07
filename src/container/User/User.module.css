@@ -54,14 +54,15 @@
 }
 
 .create{
-    margin: 20px;
     background-color: #FFF1D6;
     width: 20%;
     text-align: center;
-    margin: 20px auto;
+    margin: 50px auto;
     padding: 10px;
     cursor: pointer; 
     transition: all 0.3s;
+    border-radius: 20px;
+    color: orange;
 }
 
 .create:hover{
@@ -86,5 +87,20 @@
     font-size: 20px;
     color: white;
     
+}
+
+.no_posts{
+    text-align: center;
+    font-size: 20px;
+    color: rgb(180, 180, 180);
+    border-top: 1px solid rgb(201, 201, 201);
+    margin: 50px 20px;
+    padding: 50px;
+}
+
+.what{
+    display: block;
+    font-size: 50px;
+    margin-bottom: 40px;
 }
 

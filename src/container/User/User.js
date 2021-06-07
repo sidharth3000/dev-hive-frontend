@@ -45,7 +45,7 @@ class User extends Component {
         axios.get('http://localhost:9000/posts/me', config)
         .then((res) => {
             this.setState({posts: res.data})
-            console.log(this.state.posts)
+            console.log(res.data)
         }).catch((e) => {
             console.log(e)
         })
@@ -77,21 +77,29 @@ class User extends Component {
 
         const spinner = this.props.loading ? <Spinner/> : null
 
+        let buffer = null
+
+        const photo = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+
         let posts =  <div >
                         {this.state.posts.map(post =>(
                             <Post 
                             key={post._id}
-                            name={post.name}
+                            id={post._id}
                             title={post.title}
                             body={post.body}
                             time={post.time}
                             likes={post.likes}
                             photo = {post.photo}
+                            profile = {this.state.avatar}
                             />
                         ))}
                     </div>
-        
-       
+
+// {this.state.posts.map(post =>(
+//    console.log(post._id)
+// ))}
+    
 
         return(
             <React.Fragment>
@@ -110,20 +118,29 @@ class User extends Component {
                         </div>
                 </div>
 
-                <div className={styles.user}>&#x3c;{localStorage.getItem("name")}/&#x3e;</div>
+                <div className={styles.user}>&#x3c;{localStorage.getItem("name")} /&#x3e;</div>
 
                 <div className={styles.create} onClick={this.props.switchCreate}>
-                <i className="fa fa-new edit"></i>Create Post
-                    </div>
-
-                <div className={styles.posts}>
-
-                <div className={styles.my_posts}>My Posts</div>
-
-                    {/* <Post/> */}
-                        {posts}
-                    {/* <Post/> */}
+                    <i className="fa fa-new edit"></i>Create New Post
                 </div>
+
+                {this.state.posts.length == 0 ?
+
+                 <div className={styles.no_posts}>
+                     <span className={styles.what}>¯\_(ツ)_/¯</span>
+                     You have not posted anything yet!
+                 </div> 
+
+                 : 
+                 
+                 <div className={styles.posts}>
+                    <div className={styles.my_posts}>My Posts</div>
+                    {posts}
+                </div>
+                
+                }
+
+               
 
                 <Footer/>
             </React.Fragment>

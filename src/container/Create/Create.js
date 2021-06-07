@@ -7,8 +7,8 @@ import axios from 'axios';
 class Create extends Component {
 
     state = {
-        title: null,
-        body: null,
+        title: "",
+        body: "",
         photo: null
     }
 
@@ -21,8 +21,8 @@ class Create extends Component {
     }
 
     onUploadHandler = (event) => {
-        this.setState({photo: event.target.value})
-        console.log(this.state.photo)
+        this.setState({photo: event.target.files[0]})
+       
     }
 
     onPublishHandler = () => {
@@ -42,16 +42,18 @@ class Create extends Component {
             }
         }
 
-        let data = {
-            title: this.state.title,
-            body: this.state.body,
-            time: time,
-            photo: this.state.photo
-        }
+        const formData = new FormData();
 
-        axios.post('http://localhost:9000/create', data, config)
+      
+        formData.append("title", this.state.title)
+        formData.append("body", this.state.body)
+        formData.append("time", time)
+        formData.append("photo", this.state.photo)
+
+        axios.post('http://localhost:9000/create', formData, config)
         .then((response) => {
             console.log(response.data)
+            window.location.reload(false);
         }).catch((e) =>{
             console.log(e)
         })
@@ -74,7 +76,10 @@ class Create extends Component {
                         </i>
                     </div>
 
-                  <button className={styles.publish} onClick={this.onPublishHandler}>PUBLISH</button>
+                   {this.state.title == "" && this.state.body == ""?
+                   <button className={`${styles.publish} ${styles.disable}`}>PUBLISH</button> :
+                   <button className={styles.publish} onClick={this.onPublishHandler}>PUBLISH</button>} 
+                  
                   <button className={`${styles.publish} ${styles.cancel}`} onClick={this.props.switch}>Cancel</button>
                 </Modal>
             </div>

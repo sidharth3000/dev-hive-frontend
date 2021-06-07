@@ -49,16 +49,17 @@ class Edit extends Component {
 
         formData.append(
           "avatar",
-          event.target.files[0],
-          event.target.files[0].name
+          event.target.files[0]
         );
 
-        console.log(event.target.files[0],
-            event.target.files[0].name)
+        formData.append(
+            "name", "aaaaaaaaaaa"
+        )
+
         
         let config = {
             headers: {
-                token: localStorage.getItem("token")
+                token: localStorage.getItem("token"),
             }
           }
         
@@ -72,7 +73,7 @@ class Edit extends Component {
         this.props.switch();
 
         setTimeout(() =>{
-            // window.location.reload(false);
+            window.location.reload(false);
            },1000)
     }
 

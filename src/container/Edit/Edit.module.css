@@ -34,11 +34,12 @@
 }
 
 .delete{
-    background-color: #a7281a;
+    background-color: #e65141;
     border-radius: 5px;
     padding: 10px;
-    color: #fa2710;
+    color: white;
     cursor: pointer;
+    margin: 20px;
 }
 
 .delete:hover{

@@ -4,6 +4,7 @@
     border: 1px solid orange;
     background-color: #FFF1D6;
     padding: 10px;
+    border-radius: 0px 0px 5px 5px;
     /* color: orange; */
 }
 
@@ -12,6 +13,7 @@
     font-size: 1.5em;
     display: inline;
     padding: 10px;
+    border-radius: 5px 5px 0px 0px;
 }
 
 .insert{
@@ -68,8 +70,8 @@
 }
 
 .cancel{
-    background-color: #a7281a;
-    color: #f73a25;
+    background-color: #e65141;
+    color: white;
 }
 
 .cancel:hover{
@@ -79,5 +81,15 @@
 
 .photo{
     margin: 20px;
+}
+
+.disable{
+    background-color: aliceblue;
+    color: rgb(121, 121, 121);
+}
+
+.disable:hover{
+    background-color: aliceblue;
+    color: rgb(121, 121, 121);
 }
 
