@@ -39,7 +39,7 @@
     padding: 10px;
     color: white;
     cursor: pointer;
-    margin: 20px;
+    /* margin: 20px; */
 }
 
 .delete:hover{
