@@ -5,7 +5,9 @@ import {connect} from 'react-redux'
 import * as actions from "./store/actions/auth"
 import Feed from './container/Feed/Feed';
 import User from './container/User/User';
-import Auth from './container/Auth/Signup/Signup'
+import Auth from './container/Auth/Signup/Signup';
+import Full from './container/Full/Full';
+import New from './container/News/News';
 
 class App extends Component{
 
@@ -19,12 +21,12 @@ class App extends Component{
         <div>
           <Switch>
             <Route path='/' exact component={Feed}/>
-            <Route path='/' exact component={Feed}/>
             <Route path='/auth' exact component={Auth}/>
             <Route path='/user' exact component={User}/>
-            <Route path='/news' exact component={Feed}/>
+            <Route path='/news' exact component={New}/>
             <Route path='/chat' exact component={Feed}/>
             <Route path='/auth' exact component={Feed}/>
+            <Route path='/full/:id' exact component={Full}/>
             
           </Switch>
         </div>

@@ -21,6 +21,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 create_modal: !state.create_modal
             }
+
+        // case actionTypes.POST_COMMENT:
+
+        // return{
+
+        // }
         
 
         default:

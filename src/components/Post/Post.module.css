@@ -126,11 +126,12 @@
 }
 
 .send{
+    display: inline;
     background-color: white;
     color: orange;
     border: none;
     font-size: 30px;
     vertical-align: middle;
     cursor: pointer;
-    /* margin: 10px 0px 0px 0px; */
+    margin: 10px 0px 0px 20px;
 }

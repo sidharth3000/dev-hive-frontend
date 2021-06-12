@@ -49,6 +49,7 @@ class Create extends Component {
         formData.append("body", this.state.body)
         formData.append("time", time)
         formData.append("photo", this.state.photo)
+        // formData.append("likedBy", localStorage.getItem('id'))
 
         axios.post('http://localhost:9000/create', formData, config)
         .then((response) => {

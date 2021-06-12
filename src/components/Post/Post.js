@@ -1,13 +1,17 @@
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import styles from './Post.module.css';
+import * as actions from '../../store/actions/user'
 import classes from './Post.module.css';
 
 class Post extends Component { 
 
     state = {
-        comment: ""
+        comment: "",
+        likes: this.props.likes
     }
 
     onCommenrchangeHandler = (event) => {
@@ -15,8 +19,7 @@ class Post extends Component {
     }
 
     onCommnetHandleer = (ev) => {
-
-        console.log(ev.target.id)
+        console.log("reached")
 
         let config = {
             headers: {
@@ -32,20 +35,24 @@ class Post extends Component {
         days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
         const time =  days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+ampm;
 
-        const data = {
-            body: this.state.comment,
-            time: d,
-            post: ev.target.id,
-            name: localStorage.getItem('name')
+       this.props.postComment(config, this.state.comment,  ev.target.id, d, localStorage.getItem('name'), localStorage.getItem('id') )
+    }
+
+    onLike = (ev) => {
+        console.log(ev.target.id)
+        let config = {
+            headers: {
+                token: localStorage.getItem('token')
+            }
         }
 
-        axios.post('http://localhost:9000/comment', data, config )
-        .then((res) => {
-            console.log(res.data)
-        })
-        .catch((event) => {
-            console.log(event)
-        })
+        this.props.postLike(ev.target.id, config)
+
+        setTimeout(() => {
+            this.setState({likes: this.props.likes})
+          }, 1000);
+
+        
     }
 
     onPostDeletehandler = (e) => {
@@ -97,9 +104,12 @@ class Post extends Component {
                     </div>
 
                 <div>
-                    <div className={styles.number}>{this.props.likes}</div>
-                    <button className={styles.like}><i className="fa fa-heart"></i></button>
-                    <button className={styles.full}>View Full Post</button>
+                    <div className={styles.number}>{this.state.likes}</div>
+                    <button className={styles.like} id={this.props.id} onClick={this.onLike}><i id={this.props.id} className="fa fa-heart"></i></button>
+                    <Link to={'/full/' + this.props.id}>
+                        <button className={styles.full} id={this.props.id}>View Full Post</button>
+                    </Link>
+                    
 <br/>
                     <div className={styles.cmmnt_cont}>
                         <input type="text" className={styles.cmmnt} placeholder="comment" onChange={this.onCommenrchangeHandler}></input>
@@ -118,4 +128,12 @@ class Post extends Component {
     }
 }
 
-export default Post;
+const mapDispatchToProps = dispatch => {
+    return {
+        // onAuth: (name, email, pass, signup) => dispatch(actions.auth(name, email, pass, signup)),
+        postComment: (config, comment, id, d, name) => dispatch(actions.postComment(config, comment, id, d, name)),
+        postLike: (id, config) => dispatch(actions.postLike(id, config))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Post);
