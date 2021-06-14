@@ -4,16 +4,20 @@ import Navbar from '../../components/Navbar/Navbar';
 import Head from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Post from './../../components/Post/Post'
+import Spinner from '../../UI/Spinner/Spinner';
 import axios from 'axios';
 import styles from './Feed.module.css'
 
 class Feed extends Component {
 
     state = {
-        posts: []
+        posts: [],
+        loading: false
     }
 
     componentDidMount () {
+
+        this.setState({loading:true})
 
         let config = {
             headers: {
@@ -24,9 +28,10 @@ class Feed extends Component {
         axios.get('http://localhost:9000/posts', config)
         .then((res) => {
             this.setState({posts: res.data})
-            console.log(res.data)
+            this.setState({loading:false})
         })
         .catch((e) => {
+            this.setState({loading:false})
             console.log(e)
         })
     }
@@ -52,6 +57,9 @@ class Feed extends Component {
 
         return(
             <React.Fragment>
+
+                {this.state.loading ? <Spinner/> : null}
+
                 <Navbar/>
 
                 <Head>FEED</Head>

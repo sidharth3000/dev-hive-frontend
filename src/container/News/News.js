@@ -5,22 +5,28 @@ import Nav from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import Article from '../Article/Article'
 import Head from '../../components/Header/Header'
+import Spinner from '../../UI/Spinner/Spinner';
 import styles from './News.module.css'
 
 class News extends Component {
 
     state = {
-        posts: []
+        posts: [],
+        loading: false
     }
 
     componentDidMount () {
+
+        this.setState({loading:true})
+
         axios.get('https://dev.to/api/articles')
         .then((res) => {
             this.setState({posts: res.data})
             console.log(this.state.posts)
-
+            this.setState({loading:false})
         }).catch((e) => {
             console.log(e)
+            this.setState({loading:false})
         })
     }
 
@@ -46,6 +52,9 @@ class News extends Component {
 
         return(
             <div>
+
+                {this.state.loading ? <Spinner/> : null}
+
                 <Nav/>
 
                 <Head>NEWS</Head>

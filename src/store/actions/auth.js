@@ -27,6 +27,7 @@ export const switchSign = () => {
 }
 
 export const logout = () => {
+    console.log('reached')
     localStorage.clear();
     return{
         type: actionTypes.LOGOUT

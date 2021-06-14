@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import styles from './Create.module.css'
 import Modal from '../../UI/Modal/Modal'
+import Spinner from '../../UI/Spinner/Spinner'
 import axios from 'axios';
 
 class Create extends Component {
@@ -9,7 +10,8 @@ class Create extends Component {
     state = {
         title: "",
         body: "",
-        photo: null
+        photo: null,
+        loading: false
     }
 
     onTitleChangeHandler = (event) => {
@@ -26,6 +28,8 @@ class Create extends Component {
     }
 
     onPublishHandler = () => {
+
+        this.setState({loading:true})
 
         var d = new Date(),
         minutes = d.getMinutes().toString().length === 1 ? '0'+d.getMinutes() : d.getMinutes(),
@@ -53,9 +57,10 @@ class Create extends Component {
 
         axios.post('http://localhost:9000/create', formData, config)
         .then((response) => {
-            console.log(response.data)
+            this.setState({loading:false})
             window.location.reload(false);
         }).catch((e) =>{
+            this.setState({loading:false})
             console.log(e)
         })
 
@@ -66,6 +71,7 @@ class Create extends Component {
 
         return(
             <div>
+                {this.state.loading ? <Spinner/> : null}
                 <Modal show={this.props.show} switch={this.props.switch} >
                     <textarea cols="40" rows="1" className={`${styles.txt} ${styles.title}`} onChange={this.onTitleChangeHandler} placeholder="Title"></textarea>
                     <textarea cols="40" rows="15" className={styles.txt} onChange={this.onBodyChangeHandler} placeholder="Body"></textarea>

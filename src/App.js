@@ -17,20 +17,46 @@ class App extends Component{
 
   render(){
 
+    // console.log()
+
+    let routes =  <div>
+                      <Switch>
+                        <Route path='/' exact component={Feed}/>
+                        <Route path='/auth' exact component={Auth}/>
+                        <Route path='/user' exact component={User}/>
+                        <Route path='/news' exact component={New}/>
+                        <Route path='/chat' exact component={Feed}/>
+                        <Route path='/auth' exact component={Feed}/>
+                        <Route path='/full/:id' exact component={Full}/>
+                        
+                      </Switch>
+                    </div>
+
     return(
+
+      <div>
+        {this.props.auth ? 
+        routes :
         <div>
-          <Switch>
-            <Route path='/' exact component={Feed}/>
-            <Route path='/auth' exact component={Auth}/>
-            <Route path='/user' exact component={User}/>
-            <Route path='/news' exact component={New}/>
-            <Route path='/chat' exact component={Feed}/>
-            <Route path='/auth' exact component={Feed}/>
-            <Route path='/full/:id' exact component={Full}/>
-            
-          </Switch>
-        </div>
+        <Switch>
+          <Route path='/' exact component={Feed}/>
+          <Route path='/auth' exact component={Auth}/>
+          {/* <Route path='/user' exact component={User}/> */}
+          <Route path='/news' exact component={New}/>
+          {/* <Route path='/chat' exact component={Feed}/> */}
+          {/* <Route path='/auth' exact component={Feed}/> */}
+          {/* <Route path='/full/:id' exact component={Full}/> */}
+          
+        </Switch>
+      </div>}
+      </div>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return{
+      auth: state.auth.auth,
   }
 }
 
@@ -40,4 +66,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null , mapDispatchToProps)(App);
+export default connect(mapStateToProps , mapDispatchToProps)(App);

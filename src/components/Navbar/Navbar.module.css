@@ -1,3 +1,22 @@
+.navbar{
+    position: sticky;
+    top:0;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    transition: all 0.4s;
+}
+
+.scrolled{
+    position: sticky;
+    top:0;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid orange;
+    padding: 0px;
+    background-color: #fff1d6f3 ;
+    transition: all 0.4s;
+}
+
+
 ul{
     padding-inline-start: 0px;
 }
@@ -16,8 +35,9 @@ ul{
 
 .link{
     font-size: 1.3em;
-    padding: 20px;
+    padding: 0px 20px;
     display: inline;
+    transition: all 0.4s;
 }
 
 .logoo{
@@ -85,5 +105,8 @@ ul{
 
   .dropdown:hover .drop {
     opacity: 100;
-    
+  }
+
+  .auth{
+      font-size: 15px;
   }
