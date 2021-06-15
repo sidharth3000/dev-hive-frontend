@@ -33,7 +33,6 @@ class Post extends Component {
         ampm = d.getHours() >= 12 ? 'pm' : 'am',
         months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
         days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        const time =  days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+ampm;
 
        this.props.postComment(config, this.state.comment,  ev.target.id, d, localStorage.getItem('name'), localStorage.getItem('id') )
     }

@@ -83,7 +83,7 @@ class Create extends Component {
                         </i>
                     </div>
 
-                   {this.state.title == "" && this.state.body == ""?
+                   {this.state.title === "" && this.state.body === ""?
                    <button className={`${styles.publish} ${styles.disable}`}>PUBLISH</button> :
                    <button className={styles.publish} onClick={this.onPublishHandler}>PUBLISH</button>} 
                   

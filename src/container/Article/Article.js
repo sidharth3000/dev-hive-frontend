@@ -1,4 +1,3 @@
-import { react } from "@babel/types";
 import React, {Component} from 'react';
 
 import photo from '../../images/auth.jpg'
