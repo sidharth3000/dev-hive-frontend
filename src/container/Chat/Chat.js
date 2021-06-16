@@ -8,23 +8,41 @@ import socket from '../../components/socket'
 
 
 class Chat extends Component {
+    
 
     state = {
         mssg: ""
-       
     }
 
     onInputChangeHandler = (event) => {
         this.setState({mssg: event.target.value})
     }
 
-    onSendMessage = () => {
+    onSendMessage = (event) => {
 
-        socket.emit('sendMessage', this.state.mssg);
+        // console.log(event.target.value)
+
+        event.preventDefault();
+
+        socket.emit('sendMessage', this.state.mssg, (err) => {
+           if(err) {
+               console.log(err)
+           }else{
+               console.log('message delivered!')
+               this.setState({mssg: ''})
+               this.nameInput.focus();
+            //    console.log(this.state.mssg)
+           }
+        });
+
+      
+
+       
 
     }
 
     onSendLocation = () => {
+
         if(!navigator.geolocation){
             return alert("This feature is not supported on your browser!")
         }
@@ -34,6 +52,8 @@ class Chat extends Component {
             socket.emit('sendLocation', {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
+            }, () => {
+                console.log('Location sent!')
             });
         })
        
@@ -55,9 +75,15 @@ class Chat extends Component {
 
                 <Navbar/>
                     <div>
-                        <input type="text" onChange={this.onInputChangeHandler}></input>
-                        <button onClick={this.onSendMessage}>send</button>
+
+                        <form onSubmit={this.onSendMessage}>
+                        <input autoFocus type="text" value={this.state.mssg} onChange={this.onInputChangeHandler} 
+                                ref={(input) => { this.nameInput = input; }}
+                                defaultValue="It will focus"/>
+                        <input type="submit"></input>
                         <button onClick={this.onSendLocation}>Send Location</button>
+                        </form>
+                       
                     </div>
                 <Footer/>
 
