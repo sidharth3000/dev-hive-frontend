@@ -1,0 +1,14 @@
+.centered_form {
+    background:#FFF1D6;
+    width: 100vw;
+    height: 100vh;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered_form__box {
+    background: orange;
+    padding: 24px;
+    width: 250px;
+}

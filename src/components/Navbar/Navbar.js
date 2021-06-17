@@ -82,7 +82,7 @@ class Nav extends Component{
                         <li className={styles.link}><NavLink activeClassName={styles.active} exact to='/news'>News</NavLink></li>
 
                         {this.props.isAuth ? 
-                        <li className={styles.link}><NavLink activeClassName={styles.active} exact to='/chat'>Chat</NavLink></li>:
+                        <li className={styles.link}><NavLink activeClassName={styles.active} exact to='/room'>Chat</NavLink></li>:
                         null}
                         
                         

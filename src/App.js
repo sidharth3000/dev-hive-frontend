@@ -10,6 +10,7 @@ import Auth from './container/Auth/Signup/Signup';
 import Full from './container/Full/Full';
 import News from './container/News/News';
 import Chat from './container/Chat/Chat';
+import Room from './container/Room/Room'
 
 class App extends Component{
 
@@ -25,7 +26,8 @@ class App extends Component{
                         <Route path='/auth' exact component={Auth}/>
                         <Route path='/user' exact component={User}/>
                         <Route path='/news' exact component={News}/>
-                        <Route path='/chat' exact component={Chat}/>
+                        <Route path='/room' exact component={Room}/>
+                        <Route path='/chat/:room' exact component={Chat}/>
                         <Route path='/auth' exact component={Feed}/>
                         <Route path='/full/:id' exact component={Full}/>
                         
