@@ -10,6 +10,18 @@
     overflow-y: auto
 }
 
+.room{
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.users_cont{
+    color: white;
+    margin: 20px 0px 0px 21px;
+}
+
 .main_chat{
     flex-grow: 1;
     display: flex;
@@ -90,7 +102,7 @@
 
 .txt{
     color: rgb(124, 124, 124);
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .txt_loc{

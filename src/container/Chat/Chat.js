@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
-import socketIOClient from "socket.io-client";
 
 import styles from './Chat.module.css'
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
-import Header from '../../components/Header/Header'
+// import Header from '../../components/Header/Header'
 import socket from '../../components/socket'
 
 
 class Chat extends Component {
-    
 
     state = {
         mssg: "",
-        messages: []
+        messages: [],
+        room: "aa",
+        users: []
     }
 
     onInputChangeHandler = (event) => {
@@ -65,8 +65,17 @@ class Chat extends Component {
        
     }
 
+    componentDidMount() {
+
+        socket.emit('join', localStorage.getItem("name"), this.props.match.params.room, (e) => {
+            if(e){
+                alert(e);
+            }
+        });
+    }
+
     render() {
-    
+
         socket.off('connection').on('connection', (mssg) => {
             socket.emit('sendMessage', mssg, "time", "Admin", (err) => {
                 if(err) {
@@ -86,7 +95,7 @@ class Chat extends Component {
             </div>
            )
             this.setState({message : ""})
-            console.log(this.state.messages);
+           
           });
 
         socket.off('locationMessage').on('locationMessage', (mssg, time, user) => {
@@ -103,7 +112,15 @@ class Chat extends Component {
         console.log(mssg);
         });
 
-        // socket.emit('join', localStorage.getItem("name"), this.props.match.params.room)
+
+        socket.off('roomData').on('roomData', ({room, users}) => {
+           
+            console.log(room)
+            this.setState({room: room});
+
+            this.setState({users})
+            console.log(this.state.users)
+        })
 
         return(
 
@@ -115,8 +132,12 @@ class Chat extends Component {
 
                 <div className={styles.chat}>
 
-                    <div className={styles.side}></div>
-
+                    <div className={styles.side}>
+                        <div className={styles.room}>{this.state.room}</div>
+                        <div className={styles.users_cont}></div>
+                        
+                    </div>
+                       
                     <div>
 
                         <div className={styles.main_chat}>

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 
 import styles from './Room.module.css'
 import Navbar from '../../components/Navbar/Navbar';
@@ -28,9 +27,9 @@ class Room extends Component {
                         <div>Enter Room no.</div>
                         <input type="text" onChange={this.onRoomChangeHandler}></input>
 
-                        <Link to={'/chat/' + this.state.room}>
+                        <a href={'/chat/' + this.state.room}>
                             <div>JOIN</div>
-                        </Link>
+                        </a>
                     </div>
                 </div>
 
