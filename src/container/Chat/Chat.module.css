@@ -7,19 +7,41 @@
     background-color: orange;
     height: 90vh;
     width: 225px;
+    /* position: fixed; */
+    /* left: 0px; */
     overflow-y: auto
+}
+
+.mssgs_cont{
+    /* background-color: red; */
+    height: 75vh;
+    position: absolute;
+    left: 225px;
+    right: 0px;
+    overflow: auto;
 }
 
 .room{
     font-size: 30px;
-    color: white;
+    color: rgb(68, 68, 68);
     font-weight: bold;
-    margin-left: 20px;
+    padding: 20px 0px 20px 20px;
+    background-color: #FFF1D6;
 }
 
 .users_cont{
-    color: white;
-    margin: 20px 0px 0px 21px;
+    color: rgb(243, 243, 243);
+    margin: 0px 0px 0px 21px;
+}
+
+.users_list{
+    margin: 30px 0px 10px 0px;
+    padding: 5px 0px 5px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    border-right: 2px solid orange;
+   
 }
 
 .main_chat{
@@ -32,16 +54,12 @@
 .chat_messages{
     flex-grow: 1;
     padding: 24px 24px 0 24px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .compose{
-    display: flex;
-    flex-shrink: 0;
-    margin-top: 16px;
-    padding: 24px;
-    position: absolute;
-    bottom: 0px;
+    position: fixed;
+    bottom: 10px;
     right: 10px;
 }
 
@@ -49,6 +67,7 @@
     display: flex;
     flex-grow: 1;
     margin-right: 16px;
+    width: 100%;
 }
 
 .inpu{

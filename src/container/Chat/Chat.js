@@ -20,6 +20,14 @@ class Chat extends Component {
         this.setState({mssg: event.target.value})
     }
 
+    autoScroll = () => {
+
+      const mssgs = document.getElementById("mssgs")
+
+      mssgs.scrollTop = mssgs.scrollHeight;
+
+    }
+
     onSendMessage = (event) => {
 
         var today = new Date(),
@@ -38,6 +46,8 @@ class Chat extends Component {
                this.nameInput.focus();
            }
         });
+
+        this.autoScroll();
     }
 
     onSendLocation = (event) => {
@@ -62,6 +72,8 @@ class Chat extends Component {
                 console.log('Location sent!')
             });
         })
+
+        this.autoScroll();
        
     }
 
@@ -76,6 +88,7 @@ class Chat extends Component {
 
     render() {
 
+
         socket.off('connection').on('connection', (mssg) => {
             socket.emit('sendMessage', mssg, "time", "Admin", (err) => {
                 if(err) {
@@ -83,7 +96,7 @@ class Chat extends Component {
                 }else{
                     this.setState({mssg: ''})
                 }
-             });
+            });
         });
 
         socket.off('message').on('message', (mssg, d, user) => {
@@ -94,9 +107,9 @@ class Chat extends Component {
                 <div className={styles.txt}>{mssg}</div> 
             </div>
            )
-            this.setState({message : ""})
-           
-          });
+            this.setState({message : ""})           
+        });
+
 
         socket.off('locationMessage').on('locationMessage', (mssg, time, user) => {
         this.state.messages.push(
@@ -116,10 +129,17 @@ class Chat extends Component {
         socket.off('roomData').on('roomData', ({room, users}) => {
            
             console.log(room)
+            console.log(users)
             this.setState({room: room});
 
-            this.setState({users})
-            console.log(this.state.users)
+            this.setState({users: []})
+            
+           users.map(user => {
+               this.state.users.push(<div>{user.username}</div>);
+           })
+
+           console.log(this.state.users);
+           
         })
 
         return(
@@ -128,32 +148,32 @@ class Chat extends Component {
 
                 <Navbar/>
 
-                {/* <Header>Chat</Header> */}
-
                 <div className={styles.chat}>
 
                     <div className={styles.side}>
                         <div className={styles.room}>{this.state.room}</div>
-                        <div className={styles.users_cont}></div>
-                        
+                        <div className={styles.users_list}>Users</div>
+                        <div className={styles.users_cont}>{this.state.users}</div>                        
                     </div>
                        
                     <div>
 
                         <div className={styles.main_chat}>
 
-                            <div className={styles.chat_messages}>{this.state.messages}</div>
+                            <div className={styles.mssgs_cont} id="mssgs">
+                                <div className={styles.chat_messages}>{this.state.messages}</div>
+                            </div>
 
                             <div className={styles.compose}>
 
                                     <form onSubmit={this.onSendMessage}>
-                                    <input className={styles.inpu} autoFocus type="text" value={this.state.mssg} onChange={this.onInputChangeHandler} 
-                                            ref={(input) => { this.nameInput = input; }}
-                                            defaultValue="It will focus"/>
-                                    <button onClick={this.onSendMessage} className={styles.send}>
-                                    <i class="fa fa-arrow-circle-right"></i>
-                                    </button>
-                                    <button onClick={this.onSendLocation} className={styles.loc}>Send Location</button>
+                                        <input className={styles.inpu} autoFocus type="text" value={this.state.mssg} onChange={this.onInputChangeHandler} 
+                                                ref={(input) => { this.nameInput = input; }}
+                                                defaultValue="It will focus"/>
+                                        <button onClick={this.onSendMessage} className={styles.send}>
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                        </button>
+                                        <button onClick={this.onSendLocation} className={styles.loc}>Send Location</button>
 
                                     </form>
 
@@ -166,7 +186,7 @@ class Chat extends Component {
                 </div>
 
                
-                <Footer/>
+                {/* <Footer/> */}
 
             </div>
 
